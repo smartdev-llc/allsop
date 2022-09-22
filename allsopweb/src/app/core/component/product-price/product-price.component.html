@@ -1,0 +1,4 @@
+<ng-container *ngIf="product">
+  <ng-container *ngIf="product?.oldPrice"><del>${{product.oldPrice}}</del> ${{product.price}}</ng-container>
+  <ng-container *ngIf="!product?.oldPrice">${{product.price}}</ng-container>
+</ng-container>

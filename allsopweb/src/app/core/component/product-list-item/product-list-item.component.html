@@ -1,0 +1,15 @@
+<div class="card mb-4 shadow-sm">
+  <div class="card-header">
+    <app-category-name [id]="product?.categoryId"></app-category-name>
+    <small></small>
+  </div>
+  <div class="card-body">
+    <h4 class="card-title pricing-card-title" *ngIf="product?.oldPrice"><del>£{{product?.oldPrice}}</del> £{{product?.price}}</h4>
+    <h4 class="card-title pricing-card-title" *ngIf="!product?.oldPrice">£{{product?.price}}</h4>
+    <ul class="list-unstyled mt-3 mb-4">
+      <li>{{product?.name}}</li>
+      <li>Available: {{product?.availableQuantity}}</li>
+    </ul>
+    <button type="button" class="btn btn-lg btn-outline-primary" [disabled]="!cart || !product?.availableQuantity" (click)="addProductToCard(cart!)"><i class="fas fa-shopping-cart"></i></button>
+  </div>
+</div>

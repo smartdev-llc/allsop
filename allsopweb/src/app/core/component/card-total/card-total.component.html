@@ -1,0 +1,6 @@
+<ng-container *ngIf="!reducedAmount">
+  £{{cart?.total}}
+</ng-container>
+<ng-container *ngIf="reducedAmount">
+  <del>£{{cart?.total}}</del> £{{cart?.reducedTotal}} | Saved £{{reducedAmount}}
+</ng-container>

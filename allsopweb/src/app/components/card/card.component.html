@@ -1,0 +1,67 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Category</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td>
+        <app-product-name [id]="item.productId"></app-product-name>
+      </td>
+      <td>
+        <app-category-name-by-product [productId]="item.productId"></app-category-name-by-product>
+      </td>
+      <td>
+        <form>
+          <input class="form-control" [value]="item.quantity" name="quantity" #quantity>
+        </form>
+      </td>
+      <td>
+        <app-product-price [id]="item.productId"></app-product-price>
+      </td>
+      <td>
+        <app-cart-item-total [id]="item.id"></app-cart-item-total>
+      </td>
+      <td class="text-right">
+        <button class="btn btn-danger btn-sm" (click)="removeCartItemClickedHandler(item)">
+          <i class="fas fa-trash"></i>
+        </button>
+        <button class="btn btn-primary btn-sm" (click)="saveCartItemClickedHandler(item, quantity.value)">
+          <i class="fas fa-check"></i>
+        </button>
+      </td>
+    </tr>
+    <tr *ngIf="promotions">
+      <td colspan="5">
+        <ul>
+          <li *ngFor="let p of promotions">
+            {{p.name + ': £' + p.reducedTotal}}
+          </li>
+        </ul>
+      </td>
+      <td>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Code" [formControl]="promotionCodeControl">
+          <div class="input-group-append">
+            <button class="btn btn-secondary" type="button" (click)="applyPromotionCodeClickedHandler()" [disabled]="!promotionCodeControl.value?.length">Apply</button>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td class="text-right">Total: <app-card-total *ngIf="cartId" [cartId]="cartId"></app-card-total>
+      </td>
+    </tr>
+  </tbody>
+</table>
